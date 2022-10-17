@@ -255,11 +255,10 @@ void Compute(ofstream &of, Model &mesh, Params &params)
   of << "#Convex After Merge: " << (int)parts.size() << endl;
   cout << "#Convex After Merge: " << (int)parts.size() << endl;
 
-  string objName = regex_replace(params.output_name, regex("wrl"), "obj");
-  string wrlName = regex_replace(params.output_name, regex("obj"), "wrl");
+  // string wrlName = regex_replace(params.output_name, regex("obj"), "wrl");
 
-  SaveVRML(wrlName, parts, params);
-  SaveOBJ(objName, parts, params);
+  // SaveVRML(wrlName, parts, params);
+  SaveOBJ(parts, params);
 
   of.close();
 }

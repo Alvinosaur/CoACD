@@ -101,26 +101,14 @@ int main(int argc, char *argv[])
     exit(0);
   }
 
-  if (params.output_name.length() > 4)
-    ext = params.output_name.substr(params.output_name.length() - 4);
-  else
-  {
-    cout << "Error: Output Filename Error! You can set the output filename as either .OBJ or .WRL!" << endl;
-    exit(0);
-  }
-  if (params.logfile == "")
-  {
-
-    if (ext == ".obj")
-      params.logfile = regex_replace(params.output_name, regex(".obj"), "_log.txt");
-    else if (ext == ".wrl")
-      params.logfile = regex_replace(params.output_name, regex(".wrl"), "_log.txt");
-    else
-    {
-      cout << "Error: Output Filename must be .OBJ or .WRL format!" << endl;
-      exit(0);
-    }
-  }
+  // if (params.output_name.length() > 4)
+  //   ext = params.output_name.substr(params.output_name.length() - 4);
+  // else
+  // {
+  //   cout << "Error: Output Filename Error! You can set the output filename as either .OBJ or .WRL!" << endl;
+  //   exit(0);
+  // }
+  params.logfile = params.output_name + "log.txt";
 
   if (params.threshold < 0.01)
     cout << "Warning: Threshold t exceeds the lower bound and is automatically set as 0.01!" << endl;
