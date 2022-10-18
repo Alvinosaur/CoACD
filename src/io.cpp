@@ -42,7 +42,6 @@ void SaveOBJ(vector<Model> parts, Params &params)
     v_numbers.push_back(0);
     string mainName = params.output_name + "/main.obj";  // aggregate all into one file
     std::ofstream main_os(mainName);
-    int nvert = 0;
     for (int n = 0; n < (int)parts.size(); n++)
     {
         string partName = params.output_name + "/part_" + to_string(n) + ".obj";

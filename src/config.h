@@ -27,6 +27,7 @@ public:
   string mode;
   int downsampling;
   double threshold;
+  size_t maxConvexHulls;
   unsigned int resolution;
   unsigned int seed;
   double rv_k;
@@ -47,7 +48,8 @@ public:
     logfile = "";
     mode = "custom";
     downsampling = 20;
-    threshold = 0.05;
+    threshold = 0.1;
+    maxConvexHulls = 5;
     resolution = 2000;
     seed = 1234;
     rv_k = 0.3;

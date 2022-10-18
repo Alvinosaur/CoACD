@@ -67,18 +67,18 @@ double MergeConvexHulls(Model &m, vector<Model> &meshs, vector<Model> &cvxs, Par
 
     size_t costSize = (size_t)cvxs.size();
 
-    while (true)
+    while (cvxs.size() > params.maxConvexHulls)
     {
       // Search for lowest cost
       double bestCost = INF;
       const size_t addr = FindMinimumElement(costMatrix, &bestCost, 0, (int32_t)costMatrix.size());
-      if (bestCost > params.threshold)
-        break;
-      if (bestCost > max(params.threshold - precostMatrix[addr], 0.01))
-      {
-        costMatrix[addr] = INF;
-        continue;
-      }
+      // if (bestCost > params.threshold)
+      //   break;
+      // if (bestCost > max(params.threshold - precostMatrix[addr], 0.01))
+      // {
+      //   costMatrix[addr] = INF;
+      //   continue;
+      // }
       h = max(h, bestCost);
       const size_t addrI = (static_cast<int32_t>(sqrt(1 + (8 * addr))) - 1) >> 1;
       const size_t p1 = addrI + 1;
@@ -181,7 +181,7 @@ void Compute(ofstream &of, Model &mesh, Params &params)
 
   size_t iter = 0;
   double cut_area;
-  while ((int)InputParts.size() > 0)
+  while ((int)InputParts.size() > 0 && InputParts.size() <= params.maxConvexHulls)
   {
     vector<Model> tmp;
     of << "iter " << iter << " ---- "
@@ -246,6 +246,17 @@ void Compute(ofstream &of, Model &mesh, Params &params)
     tmp.clear();
     iter++;
   }
+
+  // Add any remaining from inputParts
+  cout << InputParts.size() << endl;
+  for (size_t p=0; p<InputParts.size(); p++) {
+      Model pmesh = InputParts[p], pCH;
+      pmesh.ComputeVCH(pCH);
+      SyncNorm(mesh, pCH);
+      parts.push_back(pCH);
+      pmeshs.push_back(pmesh);
+  }
+
   if (params.merge)
     MergeConvexHulls(mesh, pmeshs, parts, params, of);
   end = clock();
