@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
   //   cout << "Error: Output Filename Error! You can set the output filename as either .OBJ or .WRL!" << endl;
   //   exit(0);
   // }
-  params.logfile = params.output_name + "log.txt";
+  params.logfile = "log.txt";
 
   if (params.threshold < 0.01)
     cout << "Warning: Threshold t exceeds the lower bound and is automatically set as 0.01!" << endl;

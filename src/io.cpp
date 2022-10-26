@@ -40,18 +40,18 @@ void SaveOBJ(vector<Model> parts, Params &params)
     RecoverParts(parts, params);
     vector<int> v_numbers;
     v_numbers.push_back(0);
-    string mainName = params.output_name + "/main.obj";  // aggregate all into one file
-    std::ofstream main_os(mainName);
+    // string mainName = params.output_name + "/main.obj";  // aggregate all into one file
+    // std::ofstream main_os(mainName);
     for (int n = 0; n < (int)parts.size(); n++)
     {
         string partName = params.output_name + "/part_" + to_string(n) + ".obj";
         std::ofstream part_os(partName);
         part_os << "o convex_" << n << endl;
-        main_os << "o convex_" << n << endl;
+        // main_os << "o convex_" << n << endl;
         for (int i = 0; i < (int)parts[n].points.size(); ++i)
         {
             part_os << "v " << parts[n].points[i][0] << " " << parts[n].points[i][1] << " " << parts[n].points[i][2] << "\n";
-            main_os << "v " << parts[n].points[i][0] << " " << parts[n].points[i][1] << " " << parts[n].points[i][2] << "\n";
+            // main_os << "v " << parts[n].points[i][0] << " " << parts[n].points[i][1] << " " << parts[n].points[i][2] << "\n";
         }
         v_numbers.push_back(v_numbers[n] + (int)parts[n].points.size());
         for (int i = 0; i < (int)parts[n].triangles.size(); ++i)
@@ -60,13 +60,13 @@ void SaveOBJ(vector<Model> parts, Params &params)
             part_os << "f " << parts[n].triangles[i][0] + 1
                << " " << parts[n].triangles[i][1] + 1
                << " " << parts[n].triangles[i][2] + 1 << "\n";
-            main_os << "f " << parts[n].triangles[i][0] + 1 + v_numbers[n]
-               << " " << parts[n].triangles[i][1] + 1 + v_numbers[n]
-               << " " << parts[n].triangles[i][2] + 1 + v_numbers[n] << "\n";
+            // main_os << "f " << parts[n].triangles[i][0] + 1 + v_numbers[n]
+            //    << " " << parts[n].triangles[i][1] + 1 + v_numbers[n]
+            //    << " " << parts[n].triangles[i][2] + 1 + v_numbers[n] << "\n";
         }
         part_os.close();
     }
-    main_os.close();
+    // main_os.close();
 }
 
 void SaveOBJS(const string foldername, const string &filename, vector<Model> parts, Params &params)
