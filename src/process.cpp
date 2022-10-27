@@ -181,7 +181,7 @@ void Compute(ofstream &of, Model &mesh, Params &params)
 
   size_t iter = 0;
   double cut_area;
-  while ((int)InputParts.size() > 0 && InputParts.size() <= params.maxConvexHulls)
+  while ((int)InputParts.size() > 0 && (parts.size() + InputParts.size()) <= params.maxConvexHulls)
   {
     vector<Model> tmp;
     of << "iter " << iter << " ---- "

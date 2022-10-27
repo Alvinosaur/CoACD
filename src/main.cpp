@@ -3,6 +3,8 @@
 #include <sstream>
 #include <string>
 #include <time.h>
+#include <assert.h>
+// #include <boost/filesystem.hpp>
 
 #include "process.h"
 
@@ -13,7 +15,6 @@ int main(int argc, char *argv[])
   Params params;
 
   // Model files
-  string input_model;
   params.seed = (unsigned)time(NULL);
 
   // args
@@ -84,6 +85,14 @@ int main(int argc, char *argv[])
       }
     }
   }
+
+  // Checks
+  // auto input_path = boost::filesystem::path(params.input_model);
+  // auto output_path = boost::filesystem::path(params.output_name);
+  // assert(boost::filesystem::exists(input_path));
+  // if (!boost::filesystem::exists(output_path)) {
+  //   boost::filesystem::create_directories(output_path);
+  // }
 
   string ext;
   if (params.input_model.length() > 4)

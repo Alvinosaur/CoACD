@@ -19,6 +19,7 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     set(CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fsanitize=address")
 endif()
 
+# find_package(Boost REQUIRED COMPONENTS filesystem)
 
 include_directories(src)
 include_directories(3rd/glm)
@@ -78,3 +79,4 @@ add_executable(
     main
     ${main_SRC}
 )
+# target_link_libraries(main ${Boost_LIBRARIES})
