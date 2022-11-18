@@ -83,6 +83,10 @@ int main(int argc, char *argv[])
       {
         sscanf(argv[i + 1], "%d", &params.downsampling);
       }
+      if (strcmp(argv[i], "--maxConvexHulls") == 0)
+      {
+        sscanf(argv[i + 1], "%d", &params.maxConvexHulls);
+      }
     }
   }
 
